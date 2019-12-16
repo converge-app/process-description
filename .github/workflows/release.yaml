@@ -30,6 +30,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./process-description.pdf
-          asset_name: process-description.pdf
-          asset_content_type: application/pdf
+          pattern: "*.pdf"
