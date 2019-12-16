@@ -218,4 +218,5 @@ TSWLatexianTemp*
 *-tags.tex
 *.pdf
 generate-list-of-repoes.py
+__latexindent_temp.tex
 env
