@@ -11,11 +11,10 @@ jobs:
         run: echo -e '[url "https://github.com/"]\n  insteadOf = "git@github.com:"' >> ~/.gitconfig
 
       - uses: actions/checkout@v1
+        name: "Checkout files"
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: true
-
-      - uses: actions/checkout@v1
 
       - name: Fetch tags and master for GitVersion
         run: |
@@ -31,10 +30,14 @@ jobs:
         id: gitversion # step id used as reference for output values
         uses: gittools/actions/execute-gitversion@v0.3
 
+      - name: Get root latex file
+        id: latex-root
+        run: |
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
         with:
-          root_file: process-description.tex
+          root_file: ${{ steps.latex-root }}
 
       - name: Release PDF
         uses: svenstaro/upload-release-action@v1-release
