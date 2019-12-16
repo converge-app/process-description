@@ -9,17 +9,20 @@ jobs:
     name: Create release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Checkout submodules
-        shell: bash
-        run: |
-          auth_header="$(git config --local --get http.https://github.com/.extraheader)"
-          git submodule sync --recursive
-          git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@master
+      - uses: actions/checkout@v1
         with:
-          root_file: process-description.tex
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: true
+      #  - name: Checkout submodules
+      #   shell: bash
+      #  run: |
+      #    auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+      #   git submodule sync --recursive
+      #   git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+      #      - name: Compile LaTeX document
+      #       uses: xu-cheng/latex-action@master
+      #      with:
+      #       root_file: process-description.tex
       - name: Release PDF
         uses: svenstaro/upload-release-action@v1-release
         with:
