@@ -33,6 +33,7 @@ jobs:
       - name: Get root latex file
         id: latex-root
         run: |
+          find * | grep '^[^\\/]*.tex$'
 
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
