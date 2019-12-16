@@ -27,6 +27,10 @@ jobs:
         with:
           versionSpec: "5.1.x"
 
+      - name: Use GitVersion
+        id: gitversion # step id used as reference for output values
+        uses: gittools/actions/execute-gitversion@v0.3
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
         with:
